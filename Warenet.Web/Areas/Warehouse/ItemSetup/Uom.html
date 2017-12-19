@@ -1,0 +1,66 @@
+﻿<form role="form" class="form-horizontal col-lg-12" name="frmUom" style="padding-top:10px">
+    <fieldset>
+        <legend>Unit Of Measurement</legend>
+        <div class="form-group col-lg-10">
+            <label for="txtUomCode" class="control-label col-lg-2">Uom Code</label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control" style="text-transform: uppercase"
+                        id="txtUomCode" name="txtUomCode"
+                        maxlength="3"
+                        ng-readonly="vm.isEdit"
+                        ng-required="true"
+                        ng-pattern="/^[a-zA-Z0-9]*$/"
+                        ng-model="vm.uom.UomCode"
+                        ng-focus="!vm.isEdit"
+                        ng-change="vm.uom.UomCode=vm.uom.UomCode.toUpperCase();">
+                <div class="errors" ng-show="frmUom.$submitted || frmUom.txtUomCode.$touched">
+                    <div class="error" ng-show="frmUom.txtUomCode.$error.required ||
+                                            frmUom.txtUomCode.$error.pattern">
+                        Enter Uom Code (Max.3 letter(s)).
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtUomDesc" class="control-label col-lg-2">Description</label>
+            <div class="col-lg-8">
+                <input type="text" class="form-control"
+                       id="txtUomDesc" name="txtUomDesc"
+                       ng-model="vm.uom.UomDescription"
+                       ng-focus="vm.isEdit"
+                       ng-readonly="vm.isReadOnly">
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtRemark" class="control-label col-lg-2">Remark</label>
+            <div class="col-lg-8">
+                <textarea class="form-control"
+                          id="txtRemark" name="txtRemark"
+                          ng-model="vm.uom.Remark"
+                          ng-readonly="vm.isReadOnly"></textarea>
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <button type="button" class="btn btn-danger"
+                        id="btnDelete" name="btnDelete"
+                        ng-click="vm.btnDelete_Click();"
+                        ng-confirm-click="Are you sure want to delete?">
+                    {{vm.isDeleted ? "Undelete" : "Delete"}}
+                </button>
+                <div class="pull-right">
+                    <button id="btnCancel" type="button" class="btn btn-default"
+                            ng-click="vm.btnCancel_Click();">
+                        Cancel
+                    </button>
+                    <button id="btnSave" type="submit" class="btn btn-primary"
+                            ng-click="vm.btnSave_Click();"
+                            ng-disabled="vm.isDeleted">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>

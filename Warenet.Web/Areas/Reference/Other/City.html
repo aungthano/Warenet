@@ -1,0 +1,70 @@
+﻿<form role="form" class="form-horizontal col-lg-12" style="padding-top:10px"
+        name="frmCity">
+    <fieldset>
+        <legend>City</legend>
+        <div class="form-group col-lg-10">
+            <label for="txtCityCode" class="control-label col-lg-2">City Code</label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control" style="text-transform: uppercase"
+                        id="txtCityCode" name="txtCityCode"
+                        maxlength="3"
+                        ng-readonly="vm.isEdit"
+                        ng-required="true"
+                        ng-pattern="/^[a-zA-Z0-9]*$/"
+                        ng-model="vm.city.CityCode"
+                        ng-focus="!vm.isEdit"
+                        ng-change="vm.city.CityCode=vm.city.CityCode.toUpperCase();">
+                <div class="errors" ng-show="frmCity.$submitted || frmCity.txtCityCode.$touched">
+                    <div class="error" ng-show="frmCity.txtCityCode.$error.required ||
+                                            frmCity.txtCityCode.$error.pattern">
+                        Enter City Code (Max.2 letter(s)).
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtCityName" class="control-label col-lg-2">City Name</label>
+            <div class="col-lg-8">
+                <input type="text" class="form-control"
+                        id="txtCityName" name="txtCityName"
+                        ng-model="vm.city.CityName"
+                        ng-focus="vm.isEdit">
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtCountryCode" class="control-label col-lg-2">
+                <a ng-click="vm.showCountryDialog();">Country Code</a>
+            </label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control" style="text-transform:uppercase"
+                        id="txtCountryCode" name="txtCountryCode"
+                        ng-required="true"
+                        ng-model="vm.city.CountryCode"
+                        ng-dblclick="vm.showCountryDialog();"
+                        ng-change="vm.city.CountryCode=vm.city.CountryCode.toUpperCase();">
+                <p class="help-block">Country Name: {{vm.CountryName}}</p>
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtRemark" class="control-label col-lg-2">Remark</label>
+            <div class="col-lg-8">
+                <textarea class="form-control"
+                            id="txtRemark" name="txtRemark"
+                            ng-model="vm.city.Remark"></textarea>
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 text-right">
+                <button id="btnCancel" type="button" class="btn btn-default"
+                        ng-click="vm.cancel();">
+                    Cancel
+                </button>
+                <button id="btnSave" type="submit" class="btn btn-primary"
+                        ng-click="frmCity.$valid && vm.save();">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>

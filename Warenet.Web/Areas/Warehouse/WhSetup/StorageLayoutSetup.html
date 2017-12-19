@@ -1,0 +1,166 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+            ng-click="btnCancel_Click();">
+        &times;
+    </button>
+    <h4 class="modal-title">Generate Storage Bin</h4>
+</div>
+<div class="modal-body" id="modal-body">
+    <form role="form" class="form-horizontal" name="frmStorageLayoutSetup">
+        <div class="form-group">
+            <label class="control-label col-sm-2 text-left" for="txtAisleFrom">Aisle</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control text-uppercase"
+                       id="txtAisleFrom" name="txtAisleFrom"
+                       maxlength="3"
+                       ng-model="vm.storageLayout.AisleFrom"
+                       ng-required="true"
+                       ng-pattern="/^[a-zA-Z0-9]*$/"
+                       ng-change="vm.storageLayout.AisleFrom=vm.storageLayout.AisleFrom.toUpperCase();"
+                       ng-focus="true">
+                <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtAisleFrom.$touched">
+                    <div class="error" ng-show="frmStorageLayoutSetup.txtAisleFrom.$error.required ||
+                                                    frmStorageLayoutSetup.txtAisleFrom.$error.pattern">
+                        Enter Aisle From (Max.3 letter(s)).
+                    </div>
+                </div>
+            </div>
+            <label class="control-label col-sm-1" for="txtAisleTo">To</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" style="text-transform:uppercase"
+                       id="txtAisleTo" name="txtAisleTo"
+                       maxlength="3"
+                       ng-model="vm.storageLayout.AisleTo"
+                       ng-required="true"
+                       ng-pattern="/^[a-zA-Z0-9]*$/"
+                       ng-change="vm.storageLayout.AisleTo=vm.storageLayout.AisleTo.toUpperCase();">
+                <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtAisleTo.$touched">
+                    <div class="error" ng-show="frmStorageLayoutSetup.txtAisleTo.$error.required ||
+                                                    frmStorageLayoutSetup.txtAisleTo.$error.pattern">
+                        Enter Aisle To (Max.3 letter(s)).
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-2 text-left" for="txtSectionFrom">Section</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" style="text-transform:uppercase"
+                       id="txtSectionFrom" name="txtSectionFrom"
+                       maxlength="3"
+                       ng-model="vm.storageLayout.SectionFrom"
+                       ng-required="true"
+                       ng-pattern="/^[a-zA-Z0-9]*$/"
+                       ng-change="vm.storageLayout.SectionFrom=vm.storageLayout.SectionFrom.toUpperCase();">
+                <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtSectionFrom.$touched">
+                    <div class="error" ng-show="frmStorageLayoutSetup.txtSectionFrom.$error.required ||
+                                                    frmStorageLayoutSetup.txtSectionFrom.$error.pattern">
+                        Enter Section From (Max.3 letter(s)).
+                    </div>
+                </div>
+            </div>
+            <label class="control-label col-sm-1" for="txtSectionTo">To</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" style="text-transform:uppercase"
+                       id="txtSectionTo" name="txtSectionTo"
+                       maxlength="3"
+                       ng-model="vm.storageLayout.SectionTo"
+                       ng-required="true"
+                       ng-pattern="/^[a-zA-Z0-9]*$/"
+                       ng-change="vm.storageLayout.SectionTo=vm.storageLayout.SectionTo.toUpperCase();">
+                <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtSectionTo.$touched">
+                    <div class="error" ng-show="frmStorageLayoutSetup.txtSectionTo.$error.required ||
+                                                    frmStorageLayoutSetup.txtSectionTo.$error.pattern">
+                        Enter Section To (Max.3 letter(s)).
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-2 text-left" for="txtShelfFrom">Shelf</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" style="text-transform:uppercase"
+                       id="txtShelfFrom" name="txtShelfFrom"
+                       maxlength="3"
+                       ng-model="vm.storageLayout.ShelfFrom"
+                       ng-required="true"
+                       ng-pattern="/^[a-zA-Z0-9]*$/"
+                       ng-change="vm.storageLayout.ShelfFrom=vm.storageLayout.ShelfFrom.toUpperCase();">
+                <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtShelfFrom.$touched">
+                    <div class="error" ng-show="frmStorageLayoutSetup.txtShelfFrom.$error.required ||
+                                                    frmStorageLayoutSetup.txtShelfFrom.$error.pattern">
+                        Enter Shelf From (Max.3 letter(s)).
+                    </div>
+                </div>
+            </div>
+            <label class="control-label col-sm-1" for="txtShelfTo">To</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" style="text-transform:uppercase"
+                       id="txtShelfTo" name="txtShelfTo"
+                       maxlength="3"
+                       ng-model="vm.storageLayout.ShelfTo"
+                       ng-required="true"
+                       ng-pattern="/^[a-zA-Z0-9]*$/"
+                       ng-change="vm.storageLayout.ShelfTo=vm.storageLayout.ShelfTo.toUpperCase();">
+                <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtShelfTo.$touched">
+                    <div class="error" ng-show="frmStorageLayoutSetup.txtShelfTo.$error.required ||
+                                                    frmStorageLayoutSetup.txtShelfTo.$error.pattern">
+                        Enter Shelf To (Max.3 letter(s)).
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <label class="control-label col-sm-1 text-left" for="txtAisleFrom">Length</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control"
+                       id="txtLength" name="txtLength"
+                       ng-model="vm.storageLayout.Length"
+                       ng-required="true">
+                <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtLength.$touched">
+                    <div class="error" ng-show="frmStorageLayoutSetup.txtLength.$error.required ||
+                                                    frmStorageLayoutSetup.txtLength.$error.pattern">
+                        Enter Length (11,4 Digit(s)).
+                    </div>
+                </div>
+            </div>
+            <label class="control-label col-sm-1 text-left" for="txtTotalWidth">Width</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control"
+                       id="txtTotalWidth" name="txtWidth"
+                       ng-model="vm.storageLayout.Width"
+                       ng-required="true">
+                <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtWidth.$touched">
+                    <div class="error" ng-show="frmStorageLayoutSetup.txtWidth.$error.required ||
+                                                    frmStorageLayoutSetup.txtWidth.$error.pattern">
+                        Enter Width (11,4 Digit(s)).
+                    </div>
+                </div>
+            </div>
+            <label class="control-label col-sm-1 text-left" for="txtTotalHeight">Height</label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control"
+                       id="txtTotalHeight" name="txtHeight"
+                       ng-model="vm.storageLayout.Height"
+                       ng-required="true">
+                <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtHeight.$touched">
+                    <div class="error" ng-show="frmStorageLayoutSetup.txtHeight.$error.required ||
+                                                    frmStorageLayoutSetup.txtHeight.$error.pattern">
+                        Enter Height (11,4 Digit(s)).
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" type="button"
+            ng-click="btnCancel_Click();">
+        Cancel
+    </button>
+    <button class="btn btn-primary" type="submit" 
+            ng-click="btnOk_Click();">OK</button>
+</div>

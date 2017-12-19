@@ -1,0 +1,100 @@
+﻿<link href="../../../Content/ui-grid.css" rel="stylesheet" />
+
+<form role="form" class="col-lg-12" name="frmAsnOrder" style="padding-top:10px">
+    <fieldset>
+        <legend>ASN Order Receipt</legend>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtAsnOrderNo">ASN Order No.</label>
+            <input type="text" class="form-control" placeholder="{{vm.isEdit ? vm.asn.AsnOrderNo : 'NEW'}}"
+                    id="txtAsnOrderNo" name="txtAsnOrderNo"
+                    ng-model="vm.asn.AsnOrderNo"
+                    ng-readonly="true">
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtAsnOrderDate">ASN Order Date</label>
+            <p class="input-group">
+                <input type="text" class="form-control"
+                        id="txtAsnOrderDate" name="txtAsnOrderDate"
+                        ng-model="vm.asn.AsnOrderDate"
+                        uib-datepicker-popup="dd/MM/yyyy"
+                        is-open="vm.dateOptions.isOpen"
+                        close-text="Close"
+                        datepicker-options="vm.dateOptions"
+                        ng-required="true" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="vm.btnAsnOrderDate_Click();"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtSupplierCode">
+                <a ng-click="vm.showSupplierDialog();">Supplier Code</a>
+            </label>
+            <input type="text" class="form-control"
+                    id="txtSupplierCode" name="txtSupplierCode"
+                    ng-model="vm.asn.SupplierCode"
+                    ng-dblclick="vm.showSupplierDialog();"
+                    ng-required="true"
+                    ng-focus="true">
+            <p class="help-block">Supplier Name : {{vm.supplierName}}</p>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtSupplierAsnNo">Supplier ASN  No</label>
+            <input type="text" class="form-control"
+                    id="txtSupplierAsnNo" name="txtSupplierAsnNo"
+                    ng-model="vm.asn.SupplierAsnNo">
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtWhCode">
+                <a ng-click="vm.showWarehouseDialog();">Warehouse Code</a>
+            </label>
+            <input type="text" class="form-control" style="text-transform:uppercase"
+                    id="txtWhCode" name="txtWhCode"
+                    ng-model="vm.asn.WarehouseCode"
+                    ng-required="true"
+                    ng-pattern="/^[a-zA-Z0-9]*$/"
+                    ng-change="vm.asn.WarehouseCode=vm.asn.WarehouseCode.toUpperCase();"
+                    ng-dblclick="vm.showWarehouseDialog();">
+            <p class="help-block">Warehouse Name : {{vm.warehouseName}}</p>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-12 col-md-7 col-lg-12">
+            <label>Item List</label>
+            <div id="dgvItemDetail" style="min-height:300px"
+                    class="grid"
+                    ui-grid="vm.gridOptions"
+                    ui-grid-move-columns
+                    ui-grid-resize-columns
+                    ui-grid-selection
+                    ui-grid-infinite-scroll />
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-12">
+            <label class="btn-bs-file btn btn-success">
+                Import ASN
+                <input type="file" accept=".xlsx, .xls"
+                        ngf-select
+                        ngf-multiple="false"
+                        ngf-change="vm.btnImportAsn_FileChanged($files)"
+                        ng-click="vm.btnImportAsn_Click($event);" />
+            </label>
+            <button type="button" class="btn btn-danger"
+                    id="btnDeleteItem" name="btnDeleteItem"
+                    ng-click="vm.btnDeleteItem_Click();">
+                Delete Item
+            </button>
+            <div class="pull-right">
+                <button id="btnCancel" type="button" class="btn btn-default"
+                        ng-click="vm.btnCancel_Click();">
+                    Cancel
+                </button>
+                <button id="btnSave" type="button" class="btn btn-primary"
+                        ng-click="vm.btnSave_Click();">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>

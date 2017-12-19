@@ -1,0 +1,96 @@
+﻿<link href="../../../Content/ui-grid.css" rel="stylesheet" />
+
+<form role="form" class="col-lg-12" name="frmPickList" style="padding-top:10px">
+    <fieldset>
+        <legend>Pick List</legend>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtPickNo">Pick No</label>
+            <input type="text" class="form-control" id="txtPickNo"
+                   ng-model="vm.pickList.PickNo"
+                   ng-disabled="true">
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtPickDate">Pick Date</label>
+            <p class="input-group">
+                <input type="text" class="form-control"
+                       id="txtPickDate" name="txtPickDate"
+                       ng-model="vm.pickList.PickDate"
+                       uib-datepicker-popup="dd/MM/yyyy"
+                       is-open="vm.pickDateOptions.isOpen"
+                       close-text="Close"
+                       datepicker-options="vm.pickDateOptions"
+                       ng-required="true"/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"
+                            ng-click="vm.btnPickDate_Click();">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
+            </p>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtWarehouseCode">
+                <a ng-click="vm.showWarehouseDialog();">Warehouse Code</a>
+            </label>
+            <input-dialog name="txtWhCode"
+                          viewname="vw_whwh1"
+                          valuemember="Warehouse Code"
+                          displaymember="Warehouse Code"
+                          displayinfomember="Warehouse Name"
+                          ng-model="vm.pickList.WarehouseCode"
+                          ng-info-model="vm.WarehouseName"
+                          ng-required="true"
+                          ng-disabled="vm.ConfirmFlag"></input-dialog>
+            <p class="help-block">Warehouse Name : {{vm.WarehouseName}}</p>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtPickBy">
+                <a ng-click="vm.showPickByDialog();">Pick By</a>
+            </label>
+            <input-dialog name="txtPickBy"
+                          viewname="vw_saus1"
+                          valuemember="User Id"
+                          displaymember="User Id"
+                          displayinfomember="User Name"
+                          ng-model="vm.pickList.PickBy"
+                          ng-info-model="vm.PickByName"
+                          ng-required="true"
+                          ng-disabled="vm.ConfirmFlag"></input-dialog>
+            <p class="help-block">Pick By : {{vm.PickByName}}</p>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-12 col-md-7 col-lg-12">
+            <label>Item List</label>
+            <div id="dgvView" style="min-height:320px"
+                 class="grid"
+                 ui-grid="vm.gridOptions"
+                 ui-grid-move-columns
+                 ui-grid-resize-columns
+                 ui-grid-selection
+                 ui-grid-infinite-scroll>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-12">
+            <button id="btnAddItem" type="button" class="btn btn-success"
+                    ng-click="vm.btnAddItem_Click();">Add Item</button>
+            <button id="btnDeleteItem" type="button" class="btn btn-danger"
+                    ng-click="vm.btnDeleteItem_Click();">Delete Item</button>
+            <div class="pull-right">
+                <button id="btnCancel" type="button" class="btn btn-default"
+                        ng-click="vm.btnCancel_Click();">
+                    Cancel
+                </button>
+                <button id="btnPrint" type="button" class="btn btn-default"
+                        ng-click="vm.btnPrintPickList_Click();">
+                    Print Pick List
+                </button>
+                <button id="btnSave" type="submit" class="btn btn-primary"
+                        ng-click="vm.btnSave_Click();">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>

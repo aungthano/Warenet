@@ -1,0 +1,205 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+            ng-click="vm.btnOk_Click();">
+        &times;
+    </button>
+    <h4 class="modal-title">Item Details</h4>
+</div>
+<div class="modal-body" id="modal-body">
+    <form role="form" class="form-horizontal no-margin" name="frmItemDetail">
+        <div class="form-group">
+            <label class="control-label col-lg-3" for="txtItemCode">
+                <a ng-click="vm.showItemDialog();"
+                   ng-disabled="vm.ConfirmFlag">Item Code</a>
+            </label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" style="text-transform:uppercase"
+                       id="txtItemCode" name="txtItemCode"
+                       maxlength="80"
+                       ng-model="vm.itemDetail.ItemCode"
+                       ng-required="true"
+                       ng-pattern="/^[a-zA-Z0-9]*$/"
+                       ng-change="vm.itemDetail.ItemCode = vm.itemDetail.ItemCode.toUpperCase();"
+                       ng-click="vm.showItemDialog();"
+                       ng-disabled="vm.ConfirmFlag"
+                       ng-focus="true">
+            </div>
+            <div class="col-lg-4">
+                <div class="errors" ng-show="frmItemDetail.$submitted || frmItemDetail.txtItemCode.$touched">
+                    <div class="error" ng-show="frmItemDetail.txtItemCode.$error.required ||
+                                                frmItemDetail.txtItemCode.$error.pattern">
+                        Enter Item Code (Max.80 letter(s)).
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <label class="control-label col-lg-3" for="txtItemDesc">Item Description</label>
+            <div class="col-lg-9">
+                <input type="text" class="form-control"
+                       id="txtItemDesc" name="txtItemDesc"
+                       ng-model="vm.itemDetail.Description"
+                       ng-disabled="vm.ConfirmFlag">
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <label class="control-label col-lg-3" for="txtBinNo">
+                <a ng-click="vm.showBinDialog();"
+                   ng-disabled="vm.ConfirmFlag">Bin No</a>
+            </label>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" style="text-transform:uppercase"
+                       id="txtBinNo" name="txtBinNo"
+                       ng-model="vm.itemDetail.BinNo"
+                       ng-pattern="/^[a-zA-Z0-9]*$/"
+                       ng-change="vm.itemDetail.BinNo = vm.itemDetail.BinNo.toUpperCase();"
+                       ng-dblclick="vm.showBinDialog();"
+                       ng-disabled="vm.ConfirmFlag">
+            </div>
+            <button class="btn btn-success" type="submit"
+                    ng-click="vm.btnAssignBinNo_Click();"
+                    ng-disabled="vm.ConfirmFlag">
+                Auto Assign Bin No
+            </button>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <label class="control-label col-lg-3" for="txtDimensionFlag">Dimension Flag</label>
+            <div class="col-lg-4">
+                <select type="text" class="form-control col-lg-3" style="text-transform:uppercase"
+                        id="txtDimensionFlag" name="txtDimensionFlag"
+                        ng-model="vm.itemDetail.DimensionFlag"
+                        ng-change="vm.itemDetail.DimensionFlag = vm.itemDetail.DimensionFlag.toUpperCase();"
+                        ng-disabled="vm.ConfirmFlag">
+                    <option value="P">PACKING</option>
+                    <option value="W">WHOLE</option>
+                    <option value="L">LOOSE</option>
+                </select>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <label class="control-label col-lg-3" for="txtQty">Qty</label>
+            <div class="col-lg-3">
+                <input type="number" class="form-control"
+                       id="txtQty" name="txtQty"
+                       ng-model="vm.itemDetail.Qty"
+                       ng-disabled="vm.ConfirmFlag">
+            </div>
+            <label class="control-label col-lg-3" for="txtUomCode">
+                <a ng-click="vm.showUomDialog();"
+                   ng-disabled="vm.ConfirmFlag">UOM Code</a>
+            </label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control" style="text-transform:uppercase"
+                       id="txtUomCode" name="txtUomCode"
+                       ng-model="vm.itemDetail.UomCode"
+                       ng-pattern="/^[a-zA-Z0-9]*$/"
+                       ng-change="vm.itemDetail.UomCode = vm.itemDetail.UomCode.toUpperCase();"
+                       ng-dblclick="vm.showUomDialog();"
+                       ng-disabled="vm.ConfirmFlag">
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <label class="control-label col-lg-3" for="txtLength">Length</label>
+            <div class="col-lg-3">
+                <input type="number" class="form-control"
+                       id="txtLength" name="txtLength"
+                       ng-model="vm.itemDetail.Length"
+                       ng-disabled="vm.ConfirmFlag">
+            </div>
+            <label class="control-label col-lg-3" for="txtWidth">Width</label>
+            <div class="col-lg-3">
+                <input type="number" class="form-control"
+                       id="txtWidth" name="txtWidth"
+                       ng-model="vm.itemDetail.Width"
+                       ng-disabled="vm.ConfirmFlag">
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <label class="control-label col-lg-3" for="txtHeight">Height</label>
+            <div class="col-lg-3">
+                <input type="number" class="form-control"
+                       id="txtHeight" name="txtHeight"
+                       ng-model="vm.itemDetail.Height"
+                       ng-disabled="vm.ConfirmFlag">
+            </div>
+            <label class="control-label col-lg-3" for="txtWeight">Weight</label>
+            <div class="col-lg-3">
+                <input type="number" class="form-control"
+                       id="txtWeight" name="txtWeight"
+                       ng-model="vm.itemDetail.Weight"
+                       ng-disabled="vm.ConfirmFlag">
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <label class="control-label col-lg-3" for="txtVolume">Volume</label>
+            <div class="col-lg-3">
+                <input type="number" class="form-control"
+                       id="txtVolume" name="txtVolume"
+                       ng-model="vm.itemDetail.Volume"
+                       ng-disabled="vm.ConfirmFlag">
+            </div>
+            <label class="control-label col-lg-3" for="txtStoreSpace">Store Space</label>
+            <div class="col-lg-3">
+                <input type="number" class="form-control"
+                       id="txtStoreSpace" name="txtStoreSpace"
+                       ng-model="vm.itemDetail.SpaceArea"
+                       ng-disabled="vm.ConfirmFlag">
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <label class="control-label col-lg-3" for="txtManufactureDate">Manufacture Date</label>
+            <div class="col-lg-5">
+                <p class="input-group no-margin">
+                    <input type="text" class="form-control"
+                           id="txtManufactureDate" name="txtManufactureDate"
+                           ng-model="vm.itemDetail.ManufactureDate"
+                           uib-datepicker-popup="dd/MM/yyyy"
+                           is-open="vm.txtManufactureDateOpen"
+                           datepicker-options="vm.mfgDateOptions"
+                           ng-disabled="vm.ConfirmFlag" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default"
+                                ng-click="vm.txtManufactureDate_Click();">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group no-margin">
+            <label class="control-label col-lg-3" for="txtExpireDate">Expiry Date</label>
+            <div class="col-lg-5">
+                <p class="input-group no-margin">
+                    <input type="text" class="form-control"
+                           id="txtExpireDate" name="txtExpireDate"
+                           ng-model="vm.itemDetail.ExpiryDate"
+                           uib-datepicker-popup="dd/MM/yyyy"
+                           is-open="vm.txtExpireDateOpen"
+                           datepicker-options="vm.expDateOptions"
+                           ng-disabled="vm.ConfirmFlag" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default"
+                                ng-click="vm.txtExpireDate_Click();">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="submit"
+            ng-click="vm.btnClose_Click();">
+        Close
+    </button>
+</div>

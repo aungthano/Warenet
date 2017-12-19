@@ -1,0 +1,140 @@
+﻿<link href="../../../Content/ui-grid.css" rel="stylesheet" />
+
+<form role="form" class="col-lg-12" name="frmGin" style="padding-top:10px">
+    <fieldset>
+        <legend>Goods Issue Note</legend>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtGinNo">Goods Issue Note No</label>
+            <input type="text" class="form-control" id="txtGinNo"
+                    ng-model="vm.gin.GoodsIssueNoteNo"
+                    ng-readonly="true">
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtGoodsIssueDate">Issue Date</label>
+            <p class="input-group">
+                <input type="text" class="form-control"
+                        id="txtIssueDate" name="txtIssueDate"
+                        ng-model="vm.gin.IssueDate"
+                        uib-datepicker-popup="dd/MM/yyyy"
+                        is-open="vm.issueDateOptions.isOpen"
+                        close-text="Close"
+                        datepicker-options="vm.issueDateOptions"
+                        ng-required="true"
+                        ng-readonly="vm.isConfirm || vm.isDeleted || vm.isEdit" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"
+                            ng-click="vm.btnIssueDate_Click();">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
+            </p>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtVendorCode">
+                <a ng-click="vm.showVendorDialog();">Vendor Code</a>
+            </label>
+            <input-dialog name="txtVendorCode"
+                          viewname="vw_rfbp1"
+                          filter="[Party Type] = 'V'"
+                          valuemember="Business Party Code"
+                          displaymember="Business Party Code"
+                          displayinfomember="Business Party Name"
+                          ng-model="vm.gin.VendorCode"
+                          ng-info-model="vm.VendorName"
+                          ng-required="true"
+                          ng-readonly="vm.isConfirm || vm.isDeleted"
+                          ng-focus="true"></input-dialog>
+            <p class="help-block">Vendor Name : {{vm.VendorName}}</p>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtSupplierCode">
+                <a ng-click="vm.showSupplierDialog();">Supplier Code</a>
+            </label>
+            <input-dialog name="txtSupplierCode"
+                          viewname="vw_rfbp1"
+                          filter="[Party Type] = 'S'"
+                          valuemember="Business Party Code"
+                          displaymember="Business Party Code"
+                          displayinfomember="Business Party Name"
+                          ng-model="vm.gin.SupplierCode"
+                          ng-info-model="vm.SupplierName"
+                          ng-required="true"
+                          ng-readonly="vm.isConfirm || vm.isDeleted"></input-dialog>
+            <p class="help-block">Supplier Name : {{vm.SupplierName}}</p>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtWhCode">
+                <a ng-click="vm.showWarehouseDialog();">Warehouse Code</a>
+            </label>
+            <input-dialog name="txtWhCode"
+                          viewname="vw_whwh1"
+                          valuemember="Warehouse Code"
+                          displaymember="Warehouse Code"
+                          displayinfomember="Warehouse Name"
+                          ng-model="vm.gin.WarehouseCode"
+                          ng-info-model="vm.WarehouseName"
+                          ng-required="true"
+                          ng-readonly="vm.isConfirm || vm.isDeleted"></input-dialog>
+            <p class="help-block">Warehouse Name : {{vm.WarehouseName}}</p>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtIssueBy">
+                <a ng-click="vm.showUserDialog();">Issue By</a>
+            </label>
+            <input-dialog name="txtIssueBy"
+                          viewname="vw_saus1"
+                          valuemember="User Id"
+                          displaymember="User Id"
+                          displayinfomember="User Name"
+                          ng-model="vm.gin.IssueBy"
+                          ng-info-model="vm.IssueByName"
+                          ng-required="true"
+                          ng-readonly="vm.isConfirm || vm.isDeleted"></input-dialog>
+            <p class="help-block">Issue By Name : {{vm.IssueByName}}</p>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-12 col-md-7 col-lg-12">
+            <label>Item List</label>
+            <div id="dgvView" style="min-height:320px"
+                    class="grid"
+                    ui-grid="vm.gridOptions"
+                    ui-grid-move-columns
+                    ui-grid-resize-columns
+                    ui-grid-selection
+                    ui-grid-infinite-scroll>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-12">
+            <button id="btnAddItem" type="submit" class="btn btn-success"
+                    ng-click="vm.btnAddItem_Click();"
+                    ng-disabled="vm.isConfirm || vm.isDeleted">Add Item</button>
+            <button id="btnDeleteItem" type="button" class="btn btn-danger"
+                    ng-click="vm.btnDeleteItem_Click();"
+                    ng-disabled="vm.isConfirm || vm.isDeleted">Delete Item</button>
+            <div class="pull-right">
+                <button id="btnCancel" type="button" class="btn btn-default"
+                        ng-click="vm.btnCancel_Click();">
+                    Cancel
+                </button>
+                <button id="btnConfirm" type="submit" class="btn btn-primary"
+                        ng-click="vm.btnConfirm_Click();"
+                        ng-disabled="vm.isDeleted">
+                    {{vm.isConfirm ? "Unconfirm" : "Confirm"}}
+                </button>
+                <button id="btnPrint" type="submit" class="btn btn-primary"
+                        ng-click="vm.btnPrint_Click();"
+                        ng-disabled="vm.isDeleted">
+                    Print GIN
+                </button>
+                <button id="btnSave" type="submit" class="btn btn-primary"
+                        ng-click="vm.btnSave_Click();"
+                        ng-disabled="vm.isDeleted">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>

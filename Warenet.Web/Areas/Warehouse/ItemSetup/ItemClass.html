@@ -1,0 +1,66 @@
+﻿<form role="form" class="form-horizontal col-lg-12" name="frmItemClass" style="padding-top:10px">
+    <fieldset>
+        <legend>Item Class</legend>
+        <div class="form-group col-lg-12">
+            <label for="txtItemClass" class="control-label col-lg-2">Item Class Code</label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control"
+                       id="txtItemClassCode" name="txtItemClassCode"
+                       maxlength="20"
+                       ng-model="vm.itemClass.ItemClassCode"
+                       ng-pattern="/^[a-zA-Z0-9]*$/"
+                       ng-required="true"
+                       ng-change="vm.itemClass.ItemClassCode = vm.itemClass.ItemClassCode.toUpperCase();"
+                       ng-readonly="vm.isEdit"
+                       ng-focus="!vm.isEdit">
+                <div class="errors" ng-show="frmItemClass.$submitted || frmItemClass.txtItemClassCode.$touched">
+                    <div class="error" ng-show="frmItemClass.txtItemClassCode.$error.required ||
+                                            frmItemClass.txtItemClassCode.$error.pattern">
+                        Enter Item Class Code (Max.20 letter(s)).
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-lg-12">
+            <label for="txtDesc" class="control-label col-lg-2">Description</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control"
+                       id="txtDesc" name="txtDesc"
+                       ng-model="vm.itemClass.Description"
+                       ng-readonly="vm.isReadOnly"
+                       ng-focus="vm.isEdit">
+            </div>
+        </div>
+        <div class="form-group col-lg-12">
+            <label for="txtRemark" class="control-label col-lg-2">Remark</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control"
+                       id="txtRemark" name="txtRemark"
+                       ng-model="vm.itemClass.Remark"
+                       ng-readonly="vm.isReadOnly">
+            </div>
+        </div>
+        <div class="form-group col-lg-12">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-6">
+                <button type="button" class="btn btn-danger"
+                        id="btnDelete" name="btnDelete"
+                        ng-click="vm.btnDelete_Click();"
+                        ng-confirm-click="Are you sure want to delete?">
+                    {{vm.isDeleted ? "Undelete" : "Delete"}}
+                </button>
+                <div class="pull-right">
+                    <button id="btnCancel" type="button" class="btn btn-default"
+                            ng-click="vm.btnCancel_Click();">
+                        Cancel
+                    </button>
+                    <button id="btnSave" type="submit" class="btn btn-primary"
+                            ng-click="vm.btnSave_Click();"
+                            ng-disabled="vm.isReadOnly">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>

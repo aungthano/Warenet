@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="deleteGrn" xml:space="preserve">
+    <value>spd_whgr1</value>
+  </data>
+  <data name="deleteGrnDetail" xml:space="preserve">
+    <value>spd_whgr2</value>
+  </data>
+  <data name="insertGrn" xml:space="preserve">
+    <value>spi_whgr1</value>
+  </data>
+  <data name="insertGrnDetail" xml:space="preserve">
+    <value>spi_whgr2</value>
+  </data>
+  <data name="selectAvalBinNo" xml:space="preserve">
+    <value>sps_AvaliableBinNo</value>
+  </data>
+  <data name="selectGrn" xml:space="preserve">
+    <value>SELECT * FROM whgr1 WHERE TrxNo = @TrxNo</value>
+  </data>
+  <data name="selectGrnDetail" xml:space="preserve">
+    <value>SELECT * FROM whgr2 WHERE TrxNo = @TrxNo AND LineItemNo = @LineItemNo</value>
+  </data>
+  <data name="selectGrnDetailCount" xml:space="preserve">
+    <value>SELECT COUNT(*) FROM whgr2 WHERE TrxNo = @TrxNo AND LIneItemNo = @LineItemNo</value>
+  </data>
+  <data name="selectGrnDetails" xml:space="preserve">
+    <value>SELECT * FROM whgr2 WHERE TrxNo = @TrxNo ORDER BY LineItemNo</value>
+  </data>
+  <data name="selectNewGrnNo" xml:space="preserve">
+    <value>DECLARE @GrnMth varchar(20) = CONVERT(CHAR(4), @ReceiptDate, 12)
+DECLARE @LastSeqNo int;
+DECLARE @NewGrnNo nvarchar(20);
+
+SELECT @LastSeqNo = ISNULL(MAX(CONVERT(INT,RIGHT(GoodsReceiptNoteNo,5))),0)
+FROM whgr1 
+WHERE SUBSTRING(GoodsReceiptNoteNo,4,4) = CONVERT(CHAR(4), @ReceiptDate, 12)
+
+SET @LastSeqNo = @LastSeqNo + 1;
+SET @NewGrnNo = 'GRN' + @GrnMth + RIGHT('00000' + CONVERT(VARCHAR,@LastSeqNo),5);
+SELECT @NewGrnNo</value>
+  </data>
+  <data name="selectPutAwayItem" xml:space="preserve">
+    <value>SELECT	gr2.TrxNo,
+		gr2.LineItemNo,
+		0 AS IsSelected,
+		gr1.GoodsReceiptNoteNo,
+		gr2.ItemCode,
+		gr2.[Description],
+		gr2.BinNo,
+		gr2.DimensionFlag,
+		gr2.UomCode,
+		gr2.Qty,
+		gr2.[Length],
+		gr2.Width,
+		gr2.Height,
+		gr2.Width,
+		gr2.Volume,
+		gr2.SpaceArea,
+		gr2.ManufactureDate,
+		gr2.ExpiryDate
+FROM whgr1 gr1 INNER JOIN whgr2 gr2 ON gr1.TrxNo = gr2.TrxNo
+WHERE	gr1.StatusCode NOT IN ('CNF','DEL') AND 
+		ISNULL(gr2.BinNo,'') = '' AND
+		gr1.WarehouseCode = @WarehouseCode AND
+		gr1.SupplierCode = @SupplierCode</value>
+  </data>
+  <data name="selectReceiveByName" xml:space="preserve">
+    <value>SELECT UserName FROM saus1 WHERE UserId = @UserId</value>
+  </data>
+  <data name="selectStatusCode" xml:space="preserve">
+    <value>SELECT StatusCode FROM whgr1 WHERE TrxNo = @TrxNo</value>
+  </data>
+  <data name="selectSupplierName" xml:space="preserve">
+    <value>SELECT TOP 1 BusinessPartyName FROM rfbp1 WHERE BusinessPartyCode = @BusinessPartyCode</value>
+  </data>
+  <data name="selectWarehouseName" xml:space="preserve">
+    <value>SELECT TOP 1 WarehouseName FROM whwh1 WHERE WarehouseCode = @WarehouseCode</value>
+  </data>
+  <data name="updateBinNo" xml:space="preserve">
+    <value>UPDATE whgr2 SET BinNo = @BinNo WHERE TrxNo = @TrxNo AND LineItemNo = @LineItemNo;
+UPDATE whgr1 SET UpdateBy = @UpdateBy, UpdateDateTime = GETDATE() WHERE TrxNo = @TrxNo;</value>
+  </data>
+  <data name="updateGrn" xml:space="preserve">
+    <value>spu_whgr1</value>
+  </data>
+  <data name="updateGrnDetail" xml:space="preserve">
+    <value>spu_whgr2</value>
+  </data>
+</root>

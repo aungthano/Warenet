@@ -1,0 +1,90 @@
+﻿<form name="frmLogin" class="form-horizontal" style="padding-left:20px; padding-top:20px;">
+    <fieldset>
+        <legend>User Login</legend>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-5">
+            <label for="txtUserId" class="col-lg-2 control-label">User Id</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" placeholder="User Id"
+                       id="txtUserId" name="txtUserId"
+                       ng-model="vm.UserId"
+                       ng-focus="true"
+                       ng-required="true"
+                       ng-pattern="/^[a-zA-Z0-9]*$/">
+            </div>
+            <div class="col-lg-4" ng-show="frmLogin.$submitted || frmLogin.txtUserId.$touched">
+                <div class="error" ng-show="frmLogin.txtUserId.$error.required">
+                    <label class="control-label">Enter User Id (Max.50 letter(s)).</label>
+                </div>
+                <div class="error" ng-show="frmLogin.txtUserId.$error.pattern">
+                    <label class="control-label">User Id must not include spaces.</label>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-5">
+            <label for="txtPwd" class="col-lg-2 control-label">Password</label>
+            <div class="col-lg-6">
+                <input type="password" class="form-control" placeholder="Password"
+                       id="txtPwd" name="txtPwd"
+                       ng-model="vm.Pwd" />
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-5">
+            <label for="txtServerName" class="col-lg-2 control-label">Server Name</label>
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Server Name"
+                           id="txtServerName" name="txtServerName"
+                           ng-model="vm.ServerName"
+                           ng-keypress="vm.txtServerName_KeyDown($event)"
+                           ng-required="true" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"
+                                ng-click="vm.btnSite_Click()">
+                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-lg-4" ng-show="frmLogin.$submitted || frmLogin.txtServerName.$touched">
+                <div class="error" ng-show="frmLogin.txtServerName.$error.required">
+                    <label class="control-label">Enter Server Name or IP.</label>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-5">
+            <label for="cboSite" class="col-lg-2 control-label">Sites</label>
+            <div class="col-lg-6">
+                <select class="form-control text-uppercase"
+                        id="cboSite" name="cboSite"
+                        ng-model="vm.Site"
+                        ng-options="site for site in vm.Sites"
+                        ng-required="true" />
+            </div>
+            <div class="col-lg-4" ng-show="frmLogin.$submitted || frmLogin.cboSite.$touched">
+                <div class="error" ng-show="frmLogin.cboSite.$error.required">
+                    <label class="control-label">Select a site to login.</label>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-5">
+            <div class="col-lg-8 text-right">
+                <button type="button" id="btnLogin" class="btn btn-primary" style="width:100px"
+                        ng-click="vm.login()">
+                    Login
+                </button>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-5">
+            <div class="col-lg-8 text-right">
+                <div class="error">
+                    {{vm.Message}}
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>

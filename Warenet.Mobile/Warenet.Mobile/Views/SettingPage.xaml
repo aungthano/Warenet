@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Warenet.Mobile.Views.SettingPage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="10">
+            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                <Label Text="Enter computer name or ip address of the server."></Label>
+                <Entry x:Name="txtServerName" Placeholder="Server Name" />
+                <Button x:Name="btnRefresh" Text="Refresh"
+                    Clicked="btnRefresh_Clicked"/>
+                <Label Text="Select a site to login."></Label>
+                <Picker x:Name="pkrSite" Title="Site"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                    <Button x:Name="btnTestCon" Text="Test Connection" 
+                            Clicked="btnTestCon_Clicked" />
+                </StackLayout>
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                    <Button x:Name="btnSaveSettings" Text="Save Changes" Clicked="btnSaveSettings_Clicked" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

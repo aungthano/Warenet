@@ -1,0 +1,167 @@
+﻿<form role="form" class="form-horizontal col-lg-12" style="padding-top:10px"
+        name="frmBusinessParty">
+    <fieldset>
+        <legend>Supplier</legend>
+        <div class="form-group col-lg-10">
+            <label for="txtBusinessPartyCode" class="control-label col-lg-2">Supplier Code</label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control" style="text-transform: uppercase"
+                        id="txtBusinessPartyCode" name="txtBusinessPartyCode"
+                        maxlength="10"
+                        ng-readonly="vm.isEdit"
+                        ng-required="true"
+                        ng-pattern="/^[a-zA-Z0-9]*$/"
+                        ng-model="vm.businessParty.BusinessPartyCode"
+                        ng-focus="!vm.isEdit"
+                        ng-change="vm.businessParty.BusinessPartyCode=vm.businessParty.BusinessPartyCode.toUpperCase();">
+                <div class="errors" ng-show="frmSupplier.$submitted || frmSupplier.txtSupplierCode.$touched">
+                    <div class="error" ng-show="frmSupplier.txtSupplierCode.$error.required ||
+                                                frmSupplier.txtSupplierCode.$error.pattern">
+                        Enter Supplier Code (Max.10 letter(s)).
+                    </div>
+                </div>
+            </div>
+            <label for="txtWarehouseCode" class="control-label col-lg-2">
+                <a ng-click="vm.showWarehouseDialog();">Warehouse Code</a>
+            </label>
+            <div class="col-lg-3">
+                <input-dialog name="txtWhCode"
+                            viewname="vw_whwh1"
+                            filter=""
+                            valuemember="Warehouse Code"
+                            displaymember="Warehouse Code"
+                            displayinfomember="Warehouse Name"
+                            ng-model="vm.businessParty.WarehouseCode"
+                            ng-info-model="vm.WarehouseName"
+                            ng-focus="vm.isEdit"></input-dialog>
+                <p class="help-block">Warehouse Name: {{vm.WarehouseName}}</p>
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtBusinessPartyName" class="control-label col-lg-2">Supplier Name</label>
+            <div class="col-lg-8">
+                <input type="text" class="form-control"
+                        id="txtBusinessPartyName" name="txtBusinessPartyName"
+                        ng-model="vm.businessParty.BusinessPartyName">
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtLocalName" class="control-label col-lg-2">Local Name</label>
+            <div class="col-lg-8">
+                <input type="text" class="form-control"
+                        id="txtLocalName" name="txtLocalName"
+                        ng-model="vm.businessParty.LocalName">
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtAddress" class="control-label col-lg-2">Address</label>
+            <div class="col-lg-8">
+                <textarea class="form-control"
+                            id="txtAddress" name="txtAddress"
+                            ng-model="vm.businessParty.Address"></textarea>
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtCountryCode" class="control-label col-lg-2">
+                <a ng-click="vm.showCountryDialog();">Country Code</a>
+            </label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control"
+                        id="txtCountryCode" name="txtCountryCode"
+                        ng-model="vm.businessParty.CountryCode"
+                        ng-pattern="/^[a-zA-Z0-9]*$/"
+                        ng-change="vm.businessParty.CountryCode=vm.businessParty.CountryCode.toUpperCase();"
+                        ng-dblclick="vm.showCountryDialog();">
+                <p class="help-block">Country Name: {{vm.CountryName}}</p>
+            </div>
+
+            <label for="txtCityCode" class="control-label col-lg-2">
+                <a ng-click="vm.showCityDialog();">City Code</a>
+            </label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control"
+                        id="txtCityCode" name="txtCityCode"
+                        ng-model="vm.businessParty.CityCode"
+                        ng-pattern="/^[a-zA-Z0-9]*$/"
+                        ng-change="vm.businessParty.CityCode=vm.businessParty.CityCode.toUpperCase();"
+                        ng-dblclick="vm.showCityDialog();">
+                <p class="help-block">City Name: {{vm.CityName}}</p>
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtPostalCode" class="control-label col-lg-2">Postal Code</label>
+            <div class="col-lg-3">
+                <input type="number" class="form-control"
+                        id="txtPostalCode" name="txtPostalCode"
+                        ng-model="vm.businessParty.PostalCode">
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtContactName" class="control-label col-lg-2">Contact Name</label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control"
+                        id="txtContactName" name="txtContactName"
+                        ng-model="vm.businessParty.ContactName">
+            </div>
+
+            <label for="txtEmail" class="control-label col-lg-2">Email</label>
+            <div class="col-lg-3">
+                <input type="email" class="form-control"
+                        id="txtEmail" name="txtEmail"
+                        ng-model="vm.businessParty.Email">
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtTelephone" class="control-label col-lg-2">Telephone</label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control"
+                        id="txtTelephone" name="txtTelephone"
+                        ng-model="vm.businessParty.Telephone">
+            </div>
+
+            <label for="txtFax" class="control-label col-lg-2">Fax</label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control"
+                        id="txtFax" name="txtFax"
+                        ng-model="vm.businessParty.Fax">
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtTaxId" class="control-label col-lg-2">Tax Id</label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control"
+                        id="txtTaxId" name="txtTaxId"
+                        ng-model="vm.businessParty.TaxId">
+            </div>
+
+            <label for="txtBranchId" class="control-label col-lg-2">Brand Id</label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control"
+                        id="txtBranchId" name="txtBranchId"
+                        ng-model="vm.businessParty.BranchId">
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtRemark" class="control-label col-lg-2">Remark</label>
+            <div class="col-lg-8">
+                <textarea class="form-control"
+                            id="txtRemark" name="txtRemark"
+                            ng-model="vm.businessParty.Remark"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group col-lg-10">
+            <div class="col-lg-4">
+                <button id="btnDelete" type="button" class="btn btn-danger"
+                        ng-click="vm.btnDelete_Click();"
+                        ng-confirm-click="Are you sure want to delete?">Delete</button>
+            </div>
+            <div class="col-lg-6 text-right">
+                <button id="btnCancel" type="button" class="btn btn-default"
+                        ng-click="vm.btnCancel_Click();">Cancel</button>
+                <button id="btnSave" type="submit" class="btn btn-primary"
+                        ng-click="vm.btnSave_Click();">Save Changes</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

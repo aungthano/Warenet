@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Report Viewer</title>
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .pdf-container {
+            width: inherit;
+            height: inherit;
+        }
+    </style>
+
+    <script src="../../Scripts/angular.js"></script>
+    <!--<script src="build/pdf.js"></script>
+    <link href="web/viewer.css" rel="stylesheet" />-->
+    
+    <script type="text/javascript">
+        var ReportApp = angular.module('ReportApp',[]);
+
+        ReportApp.controller("ReportViewerController", function ($scope) {
+            $scope.init = function () {
+                $scope.rptData = window.opener.data;
+                var pdfjsframe = document.getElementById('pdfViewer');
+                pdfjsframe.onload = function ()
+                {
+                    setTimeout(function () {
+                        pdfjsframe.contentWindow.PDFViewerApplication.open($scope.rptData);
+                    },0);
+                    
+                };
+            };
+        });
+    </script>
+
+</head>
+<body ng-app="ReportApp" ng-controller="ReportViewerController" data-ng-init="init()">
+    <div class="pdf-container">
+        <iframe id="pdfViewer" src="../../Scripts/pdfjs/web/viewer.html" style="width: inherit; height:inherit"></iframe>
+    </div>
+</body>
+</html>

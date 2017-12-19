@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Warenet.Mobile.Views.LoginPage"
+             Title="Login">
+
+    <StackLayout Padding="10">
+        <Entry x:Name="txtUserId" Placeholder="User Id" />
+        <Entry x:Name="txtPwd" Placeholder="Password" IsPassword="True" />
+        <Button x:Name="btnLogin" Clicked="btnLogin_Clicked" Text="Login" />
+        <Label x:Name="lblMsg" Text="" />
+    </StackLayout>
+
+</ContentPage>

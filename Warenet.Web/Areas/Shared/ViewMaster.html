@@ -1,0 +1,142 @@
+﻿<link href="../../Content/ui-grid.min.css" rel="stylesheet" />
+
+<form role="form" class="form-horizontal col-lg-12" style="height:100%; padding-top:10px; padding-right:0;" name="frmViewMaster">
+    <div class="form-group col-lg-12" style="padding-right:0; margin-bottom:5px;">
+        <ul class="nav nav-pills">
+            <li>
+                <select id="cboSearch1" class="form-control input-sm" style="width:150px"
+                        ng-options="column.name for column in vm.columns"
+                        ng-model="vm.searchCol1"
+                        ng-change="vm.cboSearch1_Changed();" />
+            </li>
+            <li>
+                <div class="btn-group" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default btn-sm"
+                                id="btnSearch1" name="btnSearch1"
+                                ng-click="vm.btnSearch1_Click()">
+                            %
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <input type="text" class="form-control input-sm" placeholder="Search"
+                               id="txtSearch1" name="txtSearch1"
+                               ng-model="vm.searchText1"
+                               ng-focus="true"
+                               ng-change="vm.txtSearchText1_Changed();">
+                    </div>
+
+                </div>
+            </li>
+            <li>
+                <select class="form-control input-sm" style="width:80px"
+                        id="cboSearhOpr" name="cboSearhOpr"
+                        ng-model="vm.searchOpr"
+                        ng-change="vm.cboSearhOpr_Changed();">
+                    <option>And</option>
+                    <option>Or</option>
+                </select>
+            </li>
+            <li>
+                <select class="form-control input-sm" style="width:150px"
+                        id="cboSearch2" name="cboSearch2"
+                        ng-options="column.name for column in vm.columns"
+                        ng-model="vm.searchCol2"
+                        ng-change="vm.cboSearch2_Changed();" />
+            </li>
+            <li>
+                <div class="btn-group" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default btn-sm"
+                                id="btnSearch2" name="btnSearch2"
+                                ng-click="vm.btnSearch2_Click()">
+                            %
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <input type="text" class="form-control input-sm" placeholder="Search"
+                               id="txtSearch2" name="txtSearch2"
+                               ng-model="vm.searchText2"
+                               ng-change="vm.txtSearchText2_Changed();">
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="btn-group" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <select class="form-control input-sm" style="width:70px"
+                                id="cboStatusFlag" name="cboStatusFlag"
+                                ng-model="vm.statusFlag"
+                                ng-change="vm.cboStatusFlag_Changed();">
+                            <option>Is</option>
+                            <option>Not</option>
+                        </select>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <select class="form-control input-sm" style="width:80px"
+                                id="cboStatus" name="cboStatus"
+                                ng-model="vm.statusCode"
+                                ng-change="vm.cboStatus_Changed();">
+                            <option>ALL</option>
+                            <option>USE</option>
+                            <option>DEL</option>
+                        </select>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <button type="button" class="btn btn-default btn-sm" aria-label="Left Align"
+                        id="btnRefresh" name="btnRefresh"
+                        ng-click="vm.btnRefresh_Click()">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                </button>
+            </li>
+            <li>
+                <button type="button" class="btn btn-default btn-sm" aria-label="Left Align"
+                        id="btnColumnSetting" name="btnColumnSetting"
+                        ng-click="vm.btnColSetting_Click()">
+                    <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                </button>
+            </li>
+            <li>
+                <button type="button" class="btn btn-default btn-sm" aria-label="Left Align"
+                        id="btnExport" name="btnExport"
+                        ng-click="vm.btnExport_Click()">
+                    <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                </button>
+            </li>
+            <li>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-sm"
+                            id="btnPrint" name="btnPrint"
+                            ng-click="vm.btnPrint_Click()">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-default dropdown-toggle btn-sm"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul id="lstReport" class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group col-lg-12" style="height:93%; padding-right:0; margin-right:0; padding-bottom:0; margin-bottom:0;">
+        <div id="dgvView" style="height:100%"
+             class="ui-grid"
+             context-menu="vm.otherMenuOptions"
+             ui-grid="vm.gridOptions"
+             ui-grid-move-columns
+             ui-grid-resize-columns
+             ui-grid-selection
+             ui-grid-infinite-scroll>
+        </div>
+    </div>
+</form>

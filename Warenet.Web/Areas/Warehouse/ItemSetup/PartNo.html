@@ -1,0 +1,72 @@
+﻿<form role="form" class="form-horizontal col-lg-12" name="frmPartNo" style="padding-top:10px">
+    <fieldset>
+        <legend>Part No</legend>
+        <div class="form-group col-lg-12">
+            <label for="txtPartNo" class="control-label col-lg-2">Part No</label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control"
+                       id="txtPartNo" name="txtPartNo"
+                       maxlength="50"
+                       ng-readonly="vm.isEdit"
+                       ng-required="true"
+                       ng-pattern="/^[a-zA-Z0-9]*$/"
+                       ng-model="vm.partNo.PartNo"
+                       ng-focus="!vm.isEdit"
+                       ng-change="vm.partNo.PartNo=vm.partNo.PartNo.toUpperCase();">
+                <div class="errors" ng-show="frmPartNo.$submitted || frmPartNo.txtPartNo.$touched">
+                    <div class="error" ng-show="frmPartNo.txtPartNo.$error.required ||
+                                            frmPartNo.txtPartNo.$error.pattern">
+                        Enter Part No. (Max.50 letter(s)).
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-lg-12">
+            <label for="txtPartDesc" class="control-label col-lg-2">Part Description</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control"
+                       id="txtPartDesc" name="txtPartDesc"
+                       ng-model="vm.partNo.PartDescription">
+            </div>
+        </div>
+        <div class="form-group col-lg-12">
+            <label for="txtItemCode" class="control-label col-lg-2">
+                <a ng-click="vm.showItemDialog();">Item Code</a>
+            </label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control"
+                       id="txtItemCode" name="txtItemCode"
+                       ng-model="vm.partNo.ItemCode"
+                       ng-required="true"
+                       ng-pattern="/^[a-zA-Z0-9]*$/"
+                       ng-change="vm.partNo.ItemCode=vm.partNo.ItemCode.toUpperCase();"
+                       ng-dblclick="vm.showItemDialog();">
+                <p class="help-block">Item Name: {{vm.ItemName}}</p>
+                <div class="errors" ng-show="frmPartNo.$submitted || frmPartNo.txtItemCode.$touched">
+                    <div class="error" ng-show="frmPartNo.txtItemCode.$error.required ||
+                                            frmPartNo.txtItemCode.$error.pattern">
+                        Enter Item Code. (Max.80 letter(s)).
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-lg-12">
+            <label for="txtRemark" class="control-label col-lg-2">Remark</label>
+            <div class="col-lg-6">
+                <textarea class="form-control"
+                          id="txtRemark" name="txtRemark"
+                          ng-model="vm.partNo.Remark"></textarea>
+            </div>
+        </div>
+        <div class="form-group col-lg-12 text-right">
+            <button id="btnCancel" type="button" class="btn btn-default"
+                    ng-click="vm.cancel()">
+                Cancel
+            </button>
+            <button id="btnSave" type="submit" class="btn btn-primary"
+                    ng-click="frmPartNo.$valid && vm.save()">
+                Save Changes
+            </button>
+        </div>
+    </fieldset>
+</form>

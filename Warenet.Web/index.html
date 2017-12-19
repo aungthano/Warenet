@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Warenet</title>
+
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/angular-block-ui.min.css" rel="stylesheet" />
+    <link href="Content/ui-bootstrap-csp.css" rel="stylesheet" />
+    <link href="/Content/site.css" rel="stylesheet" />
+</head>
+
+<body ng-controller="appController as vm" ng-init="vm.initController()">
+    <div class="page">
+        <div class="page-header">
+            <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#!/">Warenet</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li ng-repeat="module in vm.modules"
+                                ui-sref-active="active"
+                                ng-hide="!vm.authentication.isAuth">
+                                <a ui-sref="{{module.ModuleId}}" ng-bind="module.ModuleName"></a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
+                            <li ui-sref-active="active"><a ui-sref="product">Product</a></li>
+                            <li ui-sref-active="active"><a ui-sref="support">Support</a></li>
+                            <li ui-sref-active="active">
+                                <a ui-sref="login"
+                                   ng-bind="vm.authentication.isAuth ? 'Log Out' : 'Log In'">Log In</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ui-view="" class="page-content"></div>
+        <div class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text-info">Created by Aung Than Oo. Twitter: <a class="text-info" target="_blank" href="http://twitter.com/aungthanoo91">@aungthanoo91</a></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text-info text-right">Aung Than Oo Github: <a class="text-info" target="_blank" href="https://github.com/aungthano">@atogithub</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load dependency script -->
+    <script data-main="main" src="/Scripts/require.js"></script>
+</body>
+</html>

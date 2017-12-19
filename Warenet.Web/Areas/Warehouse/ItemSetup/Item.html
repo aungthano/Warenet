@@ -1,0 +1,380 @@
+﻿<link href="../../../Content/Panel.css" rel="stylesheet" />
+
+<form role="form" class="col-lg-12" name="frmItemSetup" style="padding-top:10px">
+    <fieldset>
+        <legend>Item Setup</legend>
+        <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tabProdInfo" target="_self" data-toggle="tab">Item Info</a></li>
+                    <li><a href="#tabUomInfo" target="_self" data-toggle="tab">Item Details</a></li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <!--Product Info-->
+                    <div class="tab-pane fade in active" id="tabProdInfo">
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                            <label for="txtProdCode">Item Code</label>
+                            <input type="text" class="form-control" style="text-transform:uppercase"
+                                    id="txtItemCode" name="txtItemCode"
+                                    maxlength="80"
+                                    ng-readonly="vm.isEdit"
+                                    ng-required="true"
+                                    ng-pattern="/^[a-zA-Z0-9]*$/"
+                                    ng-model="vm.item.ItemCode"
+                                    ng-focus="!vm.isEdit"
+                                    ng-change="vm.item.ItemCode=vm.item.ItemCode.toUpperCase();">
+                            <div class="errors" ng-show="frmItemSetup.$submitted || frmItemSetup.txtItemCode.$touched">
+                                <div class="error" ng-show="frmItemSetup.txtItemCode.$error.required ||
+                                                        frmItemSetup.txtItemCode.$error.pattern">
+                                    Enter Item Code (Max.80 letter(s)).
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                            <label for="txtItemRefNo">Item Ref No</label>
+                            <input type="text" class="form-control"
+                                   id="txtItemRefNo" name="txtItemRefNo"
+                                   ng-focus="vm.isEdit"
+                                   ng-model="vm.item.ItemRefNo"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                            <label for="txtItemName">Item Name</label>
+                            <input type="text" class="form-control"
+                                   id="txtItemName" name="txtItemName"
+                                   ng-model="vm.item.ItemName"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                            <label for="txtProdClass">
+                                <a ng-click="vm.showItemClassDialog();">Item Class Code</a>
+                            </label>
+                            <input type="text" class="form-control"
+                                   id="txtItemClassCode" name="txtItemClassCode" style="text-transform:uppercase"
+                                   ng-model="vm.item.ItemClassCode"
+                                   ng-change="vm.item.ItemClassCode=vm.item.ItemClassCode.toUpperCase();"
+                                   ng-dblclick="vm.showItemClassDialog();"
+                                   ng-readonly="vm.isReadOnly">
+                            <p class="help-block">Item Class Description: {{vm.ItemClassDesc}}</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                            <label for="txtBrandName">Brand Name</label>
+                            <input type="text" class="form-control"
+                                   id="txtBrandName" name="txtBrandName"
+                                   ng-model="vm.item.BrandName"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                            <label for="txtModel">Model</label>
+                            <input type="text" class="form-control"
+                                   id="txtModel" name="txtModel"
+                                   ng-model="vm.item.Model"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                            <label for="txtSupplierCode">
+                                <a ng-click="vm.showSupplierDialog();">Supplier Code</a>
+                            </label>
+                            <input type="text" class="form-control" style="text-transform:uppercase"
+                                   id="txtSupplierCode" name="txtSupplierCode"
+                                   ng-model="vm.item.SupplierCode"
+                                   ng-change="vm.item.SupplierCode=vm.item.SupplierCode.toUpperCase();"
+                                   ng-dblclick="vm.showSupplierDialog();"
+                                   ng-readonly="vm.isReadOnly">
+                            <p class="help-block">Supplier Name</p>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                            <label for="txtCountryCode">
+                                <a ng-click="vm.showCountryDialog();">Country Of Origin</a>
+                            </label>
+                            <input type="text" class="form-control" style="text-transform:uppercase"
+                                   id="txtCountryCode" name="txtCountryCode"
+                                   ng-model="vm.item.CountryOfOrigin"
+                                   ng-pattern="/^[a-zA-Z0-9]*$/"
+                                   ng-change="vm.item.CountryOfOrigin=vm.item.CountryOfOrigin.toUpperCase()"
+                                   ng-dblclick="vm.showCountryDialog();"
+                                   ng-readonly="vm.isReadOnly">
+                            <p class="help-block">Country Name: {{vm.CountryName}}</p>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                            <label for="cboIssueMethod">Issue Method</label>
+                            <select class="form-control"
+                                    id="cboIssueMethod" name="cboIssueMethod"
+                                    ng-model="vm.item.IssueMethod"
+                                    ng-disabled="vm.isReadOnly">
+                                <option value="FIFO">FIFO</option>
+                                <option value="LIFO">LIFO</option>
+                                <option value="FEFO">FEFO</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                            <label for="cboDgFlag">DG Indicator</label>
+                            <select class="form-control"
+                                    id="cboDgFlag" name="cboDgFlag"
+                                    ng-model="vm.item.DgIndicator"
+                                    ng-disabled="vm.isReadOnly">
+                                <option value="Y">Y</option>
+                                <option value="N">N</option>
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-8">
+                            <label for="txtRemark">Remark</label>
+                            <textarea class="form-control"
+                                      id="txtRemark" name="txtRemark"
+                                      ng-model="vm.item.Remark"
+                                      ng-readonly="vm.isReadOnly"></textarea>
+                        </div>
+                    </div>
+
+                    <!--UOM Info-->
+                    <div class="tab-pane fade" id="tabUomInfo">
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                            <label for="txtDimensionFlag">Dimension Use</label>
+                            <select type="text" class="form-control"
+                                    id="txtDimensionFlag" name="txtDimensionFlag"
+                                    ng-model="vm.item.DimensionFlag"
+                                    ng-disabled="vm.isReadOnly">
+                                <option value="P">PACKING</option>
+                                <option value="W">WHOLE</option>
+                                <option value="L">LOOSE</option>
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-2"></div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3 text-center">
+                            <label>Packing Qty</label>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3 text-center">
+                            <label>Whole Qty</label>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3 text-center">
+                            <label>Loose Qty</label>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-2 text-left">
+                            <label>Unit Qty</label>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtPackingQty" name="txtPackingQty"
+                                   ng-model="vm.item.PackingQty"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtWholeQty" name="txtWholeQty"
+                                   ng-model="vm.item.WholeQty"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtLooseQty" name="txtLooseQty"
+                                   ng-model="vm.item.LooseQty"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-2 text-left">
+                            <label>UOM Code</label>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="text" class="form-control"
+                                   id="txtPackingUomCode" name="txtPackingUomCode"
+                                   ng-model="vm.item.PackingUomCode"
+                                   ng-pattern="/^[a-zA-Z0-9]*$/"
+                                   ng-dblclick="vm.showUomDialog($event);"
+                                   ng-change="vm.item.PackingUomCode=vm.item.PackingUomCode.toUpperCase()"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="text" class="form-control"
+                                   id="txtWholeUomCode" name="txtWholeUomCode"
+                                   ng-model="vm.item.WholeUomCode"
+                                   ng-pattern="/^[a-zA-Z0-9]*$/"
+                                   ng-dblclick="vm.showUomDialog($event);"
+                                   ng-change="vm.item.WholeUomCode=vm.item.WholeUomCode.toUpperCase()"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="text" class="form-control"
+                                   id="txtLooseUomCode" name="txtLooseUomCode"
+                                   ng-model="vm.item.LooseUomCode"
+                                   ng-pattern="/^[a-zA-Z0-9]*$/"
+                                   ng-dblclick="vm.showUomDialog($event);"
+                                   ng-change="vm.item.LooseUomCode=vm.item.LooseUomCode.toUpperCase();"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-2 text-left">
+                            <label>Length</label>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtPackingLength" name="txtPackingLength"
+                                   ng-model="vm.item.PackingLength"
+                                   ng-blur="vm.calcVolume($event); vm.calcSpaceArea($event);"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtWholeLength" name="txtWholeLength"
+                                   ng-model="vm.item.WholeLength"
+                                   ng-blur="vm.calcVolume($event); vm.calcSpaceArea($event);"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtLooseLength" name="txtLooseLength"
+                                   ng-model="vm.item.LooseLength"
+                                   ng-blur="vm.calcVolume($event); vm.calcSpaceArea($event);"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-2 text-left">
+                            <label>Width</label>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtPackingWidth" name="txtPackingWidth"
+                                   ng-model="vm.item.PackingWidth"
+                                   ng-blur="vm.calcVolume($event); vm.calcSpaceArea($event);"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtWholeWidth" name="txtWholeWidth"
+                                   ng-model="vm.item.WholeWidth"
+                                   ng-blur="vm.calcVolume($event); vm.calcSpaceArea($event);"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtLooseWidth" name="txtLooseWidth"
+                                   ng-model="vm.item.LooseWidth"
+                                   ng-blur="vm.calcVolume($event); vm.calcSpaceArea($event);"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-2 text-left">
+                            <label>Height</label>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtPackingHeight" name="txtPackingHeight"
+                                   ng-model="vm.item.PackingHeight"
+                                   ng-blur="vm.calcVolume($event);"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtWholeHeight" name="txtWholeHeight"
+                                   ng-model="vm.item.WholeHeight"
+                                   ng-blur="vm.calcVolume($event);"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtLooseHeight" name="txtLooseHeight"
+                                   ng-model="vm.item.LooseHeight"
+                                   ng-blur="vm.calcVolume($event);"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-2 text-left">
+                            <label>Weight</label>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtPackingWeight" name="txtPackingWeight"
+                                   ng-model="vm.item.PackingWeight"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtWholeWeight" name="txtWholeWeight"
+                                   ng-model="vm.item.WholeWeight"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtLooseWeight" name="txtLooseWeight"
+                                   ng-model="vm.item.LooseWeight"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-2 text-left">
+                            <label>Volume</label>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtPackingVolume" name="txtPackingVolume"
+                                   ng-model="vm.item.PackingVolume"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtWholeVolume" name="txtWholeVolume"
+                                   ng-model="vm.item.WholeVolume"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtLooseVolume" name="txtLooseVolume"
+                                   ng-model="vm.item.LooseVolume"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-2 text-left">
+                            <label>Space Area</label>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtPackingSpaceArea" name="txtPackingSpaceArea"
+                                   ng-model="vm.item.PackingSpaceArea"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtWholeSpaceArea" name="txtWholeSpaceArea"
+                                   ng-model="vm.item.WholeSpaceArea"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                            <input type="number" class="form-control"
+                                   id="txtLooseSpaceArea" name="txtLooseSpaceArea"
+                                   ng-model="vm.item.LooseSpaceArea"
+                                   ng-readonly="vm.isReadOnly">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <button type="button" class="btn btn-danger"
+                    id="btnDelete" name="btnDelete"
+                    ng-click="vm.btnDelete_Click();"
+                    ng-confirm-click="Are you sure want to delete?">
+                {{vm.isDeleted ? "Undelete" : "Delete"}}
+            </button>
+            <div class="pull-right">
+                <button id="btnCancel" type="button" class="btn btn-default"
+                        ng-click="vm.btnCancel_Click();">
+                    Cancel
+                </button>
+                <button id="btnSave" type="submit" class="btn btn-primary"
+                        ng-click="vm.btnSave_Click();"
+                        ng-disabled="vm.isReadOnly">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>

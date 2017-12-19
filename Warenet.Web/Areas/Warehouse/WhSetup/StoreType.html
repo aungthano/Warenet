@@ -1,0 +1,66 @@
+﻿<form role="form" class="form-horizontal col-lg-12" name="frmStoreType" style="padding-top:10px">
+    <fieldset>
+        <legend>Store Type</legend>
+        <div class="form-group col-lg-12">
+            <label for="txtStoreType" class="control-label col-lg-2">Store Type</label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control" style="text-transform: uppercase"
+                        id="txtStoreTypeCode" name="txtStoreTypeCode"
+                        maxlength="3"
+                        ng-readonly="vm.isEdit"
+                        ng-required="true"
+                        ng-pattern="/^[a-zA-Z0-9]*$/"
+                        ng-model="vm.storeType.StoreTypeCode"
+                        ng-focus="!vm.isEdit"
+                        ng-change="vm.storeType.StoreTypeCode=vm.storeType.StoreTypeCode.toUpperCase();"
+                        ng-disabled="vm.isReadOnly">
+                <div class="errors" ng-show="frmStoreType.$submitted || frmStoreType.txtStoreTypeCode.$touched">
+                    <div class="error" ng-show="frmStoreType.txtStoreTypeCode.$error.required ||
+                                            frmStoreType.txtStoreTypeCode.$error.pattern">
+                        Please enter Store Type Code (Max.3 letter(s)).
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-lg-12">
+            <label for="txtStoreTypeDesc" class="control-label col-lg-2">Store Type Description</label>
+            <div class="col-lg-6">
+                <input name="txtStoreTypeDesc" type="text" class="form-control" id="txtStoreTypeDesc"
+                       ng-model="vm.storeType.StoreTypeDesc"
+                       ng-focus="vm.isEdit"
+                       ng-readonly="vm.isReadOnly">
+            </div>
+        </div>
+        <div class="form-group col-lg-12">
+            <label for="txtRemark" class="control-label col-lg-2">Remark</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control"
+                       id="txtRemark" name="txtRemark"
+                       ng-model="vm.storeType.Remark"
+                       ng-readonly="vm.isReadOnly">
+            </div>
+        </div>
+        <div class="form-group col-lg-12">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-6">
+                <button type="button" class="btn btn-danger"
+                        id="btnDelete" name="btnDelete"
+                        ng-click="vm.btnDelete_Click();"
+                        ng-confirm-click="Are you sure want to delete?">
+                    {{vm.isDeleted ? "Undelete" : "Delete"}}
+                </button>
+                <div class="pull-right">
+                    <button id="btnCancel" type="button" class="btn btn-default"
+                            ng-click="vm.btnCancel_Click();">
+                        Cancel
+                    </button>
+                    <button id="btnSave" type="submit" class="btn btn-primary"
+                            ng-click="vm.btnSave_Click();"
+                            ng-disabled="vm.isReadOnly">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>

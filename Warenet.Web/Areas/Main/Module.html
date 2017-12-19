@@ -1,0 +1,60 @@
+﻿<link href="../../Content/module.css" rel="stylesheet" />
+
+<!--Accordion Template-->
+<script type="text/ng-template" id="group-template.html">
+    <div class="panel-heading">
+        <span class="panel-title" style="font-size:10pt; font-weight:400; cursor:pointer">
+            <a tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
+                <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
+                    {{heading}}
+                </span>
+            </a>
+        </span>
+    </div>
+    <div class="panel-collapse collapse" uib-collapse="!isOpen" ng-transclude></div>
+</script>
+
+<!--Left Nav Menu Item Template-->
+<script type="text/ng-template" id="listItem-tpl">
+    <a class="list-group-item" id="#{{content.ContentId}}"
+       ng-repeat-start="content in vm.getChildContents(content)"
+       ng-class="{active: $state.includes(content.ModuleId + '.' + content.ContentId) || $state.includes(content.ModuleId + '.' + content.ContentId + 'detail')}"
+       ui-sref="{{content.ModuleId + '.' + content.ContentId}}"
+       ng-attr-data-toggle="{{vm.isParentNode(content) ? 'collapse' : ''}}">
+        <i class="glyphicon glyphicon-chevron-right"
+           ng-class="{'glyphicon-chevron-down': vm.isExpandContent(content.ContentId),
+                           'glyphicon-chevron-right': !vm.isExpandContent(content.ContentId)}"
+           ng-show="vm.isParentNode(content)"></i>
+        {{content.ContentName}}
+    </a>
+    <div class="list-group collapse" id="{{content.ContentId}}"
+         ng-repeat-end
+         ng-include="'listItem-tpl'">
+    </div>
+</script>
+
+<div class="container-fluid">
+    <div class="row" style="height:inherit">
+        <div class="col-xs-2 col-sm-4 col-md-3 col-lg-2 no-padding" style="height:inherit; overflow:auto; background-color:#e7e8eb">
+            <uib-accordion close-others="oneAtATime">
+                <div uib-accordion-group
+                     class="panel-default" template-url="group-template.html"
+                     is-open="status.isCustomHeaderOpen"
+                     ng-repeat="content in vm.contents | filter:{ ParentContentId: null }">
+                    <uib-accordion-heading>
+                        {{content.ContentName}}
+                        <i class="pull-right glyphicon"
+                           ng-class="{'glyphicon-chevron-down': status.isCustomHeaderOpen,
+                                      'glyphicon-chevron-right': !status.isCustomHeaderOpen}">
+                        </i>
+                    </uib-accordion-heading>
+
+                    <div class="list-group list-group-root well"
+                         ng-include="'listItem-tpl'">
+                    </div>
+                </div>
+            </uib-accordion>
+        </div>
+        <div ui-view class="col-xs-10 col-sm-8 col-md-9 col-lg-10 no-padding" style="height:inherit; overflow:auto;"></div>
+    </div>
+</div>

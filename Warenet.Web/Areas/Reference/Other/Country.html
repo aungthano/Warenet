@@ -1,0 +1,74 @@
+﻿<form role="form" class="form-horizontal col-lg-12" style="padding-top:10px"
+        name="frmCountry">
+    <fieldset>
+        <legend>Country</legend>
+        <div class="form-group col-lg-10">
+            <label for="txtCountryCode" class="control-label col-lg-2">Country Code</label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control" style="text-transform: uppercase"
+                        id="txtCountryCode" name="txtCountryCode"
+                        maxlength="2"
+                        ng-readonly="vm.isEdit"
+                        ng-required="true"
+                        ng-pattern="/^[a-zA-Z0-9]*$/"
+                        ng-model="vm.country.CountryCode"
+                        ng-focus="!vm.isEdit"
+                        ng-change="vm.country.CountryCode=vm.country.CountryCode.toUpperCase();">
+                <div class="errors" ng-show="frmCountry.$submitted || frmCountry.txtCountryCode.$touched">
+                    <div class="error" ng-show="frmCountry.txtCountryCode.$error.required ||
+                                            frmCountry.txtCountryCode.$error.pattern">
+                        Enter Country Code (Max.2 letter(s)).
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtCountryName" class="control-label col-lg-2">Country Name</label>
+            <div class="col-lg-8">
+                <input type="text" class="form-control"
+                        id="txtCountryName" name="txtCountryName"
+                        ng-model="vm.country.CountryName"
+                        ng-focus="vm.isEdit">
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtRegionCode" class="control-label col-lg-2">Region Code</label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control" style="text-transform:uppercase"
+                        id="txtRegionCode" name="txtRegionCode"
+                        ng-model="vm.country.RegionCode"
+                        ng-change="vm.country.RegionCode=vm.country.RegionCode.toUpperCase();">
+            </div>
+
+            <label for="txtZoneCode" class="control-label col-lg-2">Zone Code</label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control" style="text-transform:uppercase"
+                        id="txtZoneCode" name="txtZoneCode"
+                        ng-model="vm.country.ZoneCode"
+                        ng-change="vm.country.ZoneCode=vm.country.ZoneCode.toUpperCase();">
+            </div>
+        </div>
+
+        <div class="form-group col-lg-10">
+            <label for="txtRemark" class="control-label col-lg-2">Remark</label>
+            <div class="col-lg-8">
+                <textarea class="form-control"
+                            id="txtRemark" name="txtRemark"
+                            ng-model="vm.country.Remark"></textarea>
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 text-right">
+                <button id="btnCancel" type="button" class="btn btn-default"
+                        ng-click="vm.cancel()">
+                    Cancel
+                </button>
+                <button id="btnSave" type="submit" class="btn btn-primary"
+                        ng-click="frmCountry.$valid && vm.save()">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>

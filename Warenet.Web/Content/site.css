@@ -1,0 +1,77 @@
+﻿body {
+    -ms-overflow-style: scrollbar;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+/* bootstrap helper */
+.container-fluid, .container{
+   height:100%;
+}
+
+.no-padding {
+    padding:0;
+}
+
+.no-margin {
+    margin:0;
+}
+
+legend{
+ font-size: 20px; 
+ margin-bottom:15px;
+ margin-top:10px;
+ color:gray;
+}
+
+/* main page */
+.page {
+    height: 100%;
+    position: relative;
+    padding: 45px 0 30px 0;
+    overflow: hidden;
+}
+
+.page-header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    padding:0;
+    background-color:black;
+}
+
+.page-footer {
+    width: 100%;
+    height:30px;
+    position: fixed;
+    bottom: 0;
+    background-color:#008CBA;
+    padding: 5px 0 0 0;
+    margin:0;
+}
+
+.page-content {
+    height: 100%;
+    overflow: auto;
+    margin:0;
+    padding:0;
+    border:0;
+}
+
+/* file input button */
+.btn-bs-file{
+    position:relative;
+}
+.btn-bs-file input[type="file"]{
+    position: absolute;
+    top: -9999999;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    width:0;
+    height:0;
+    outline: none;
+    cursor: inherit;
+}

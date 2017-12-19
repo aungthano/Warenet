@@ -1,0 +1,92 @@
+﻿<link href="../../../Content/ui-grid.css" rel="stylesheet" />
+
+<form role="form" class="col-lg-12" name="frmWavePicking" style="padding-top:10px">
+    <fieldset>
+        <legend>Wave Picking</legend>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtWhCode">
+                <a ng-click="vm.showWarehouseDialog();">Warehouse Code</a>
+            </label>
+            <input-dialog name="txtWhCode"
+                          viewname="vw_whwh1"
+                          valuemember="Warehouse Code"
+                          displaymember="Warehouse Code"
+                          displayinfomember="Warehouse Name"
+                          ng-model="vm.warehouseCode"
+                          ng-info-model="vm.warehouseName"
+                          ng-required="true"
+                          ng-focus="true"></input-dialog>
+            <p class="help-block">Warehouse Name : {{vm.warehouseName}}</p>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label for="txtVendorCode">
+                <a ng-click="vm.showVendorDialog();">Vendor Code</a>
+            </label>
+            <input-dialog name="txtVendorCode"
+                          viewname="vw_rfbp1"
+                          filter="[Party Type] = 'V'"
+                          valuemember="Business Party Code"
+                          displaymember="Business Party Code"
+                          displayinfomember="Business Party Name"
+                          ng-model="vm.vendorCode"
+                          ng-info-model="vm.vendorName"
+                          ng-required="true"></input-dialog>
+            <p class="help-block">Vendor Name : {{vm.vendorName}}</p>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4" style="padding-top:25px; padding-left:0">
+            <button type="button" class="btn btn-success"
+                    ng-click="vm.btnQuery_Click()">
+                Query Data
+            </button>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+            <label class="control-label" for="txtVendorCode">Wave By</label>
+            <select class="form-control"
+                    ng-model="vm.waveBy">
+                <option value="A">Aisle</option>
+                <option value="S">Section</option>
+                <option value="H">Shelf</option>
+            </select>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4" style="margin-bottom:8px">
+            <div class="col-lg-6" style="padding-left:0px">
+                <select type="text" class="form-control"
+                        id="inpColumn" name="inpColumn"
+                        ng-model="vm.searchColumn"
+                        ng-options="column.value for column in vm.searchColumns"></select>
+            </div>
+            <div class="col-lg-6 no-padding">
+                <input type="text" class="form-control" placeholder="Search"
+                       id="txtSearch" name="txtSearch"
+                       ng-model="vm.searchText"
+                       ng-change="vm.txtSearchText_Changed();" />
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-12 col-md-7 col-lg-12">
+            <div id="dgvView" style="min-height:400px"
+                 class="grid"
+                 ui-grid="vm.gridOptions"
+                 ui-grid-move-columns
+                 ui-grid-resize-columns
+                 ui-grid-selection
+                 ui-grid-infinite-scroll>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-12">
+            <button type="button" class="btn btn-success"
+                    ng-click="vm.btnSelectAll_Click()">
+                {{vm.btnSelectText}}
+            </button>
+            <div class="pull-right">
+                <button type="button" class="btn btn-primary"
+                        ng-click="vm.btnGeneratePickList_Click();">
+                    Generate Pick List
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>

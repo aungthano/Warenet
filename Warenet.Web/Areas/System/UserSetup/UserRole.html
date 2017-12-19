@@ -1,0 +1,49 @@
+﻿<form role="form" class="form-horizontal col-lg-12" style="padding-top:10px"
+        name="frmUserRole">
+    <fieldset>
+        <legend>User Role</legend>
+        <div class="form-group col-lg-10">
+            <label for="txtUserRoleId" class="control-label col-lg-2">User Role Id</label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control" style="text-transform: uppercase"
+                        id="txtUserRoleId" name="txtUserRoleId"
+                        maxlength="5"
+                        ng-readonly="vm.isEdit"
+                        ng-required="true"
+                        ng-pattern="/^[a-zA-Z0-9]*$/"
+                        ng-model="vm.userRole.UserRoleId"
+                        ng-focus="!vm.isEdit"
+                        ng-change="vm.userRole.UserRoleId=vm.userRole.UserRoleId.toUpperCase();">
+                <div class="errors" ng-show="frmUserRole.$submitted || frmUserRole.txtuserRoleId.$touched">
+                    <div class="error" ng-show="frmUserRole.txtuserRoleId.$error.required ||
+                                            frmUserRole.txtuserRoleId.$error.pattern">
+                        Enter User Role Id (Max.5 letter(s)).
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <label for="txtUserRoleName" class="control-label col-lg-2">User Role Name</label>
+            <div class="col-lg-8">
+                <input type="text" class="form-control"
+                        id="txtUserRoleName" name="txtUserRoleName"
+                        ng-model="vm.userRole.UserRoleName"
+                        ng-focus="vm.isEdit"
+                        ng-required="true">
+            </div>
+        </div>
+        <div class="form-group col-lg-10">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 text-right">
+                <button id="btnCancel" type="button" class="btn btn-default"
+                        ng-click="vm.btnCancel_Click();">
+                    Cancel
+                </button>
+                <button id="btnSave" type="submit" class="btn btn-primary"
+                        ng-click="vm.btnSave_Click();">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>

@@ -1,0 +1,344 @@
+﻿<link href="../../../Content/ui-grid.css" rel="stylesheet" />
+<link href="../../../Content/Panel.css" rel="stylesheet" />
+
+<!--<script type="text/ng-template" id="StorageLayoutSetup.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="cancel()">
+            &times;
+        </button>
+        <h4 class="modal-title">Generate Storage Bin</h4>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <form role="form" class="form-horizontal" name="frmStorageLayoutSetup">
+            <div class="form-group">
+                <label class="control-label col-sm-2 text-left" for="txtAisleFrom">Aisle</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control text-uppercase"
+                           id="txtAisleFrom" name="txtAisleFrom"
+                           maxlength="3"
+                           ng-model="vm.storageLayout.AisleFrom"
+                           ng-required="true"
+                           ng-pattern="/^[a-zA-Z0-9]*$/"
+                           ng-change="vm.storageLayout.AisleFrom=vm.storageLayout.AisleFrom.toUpperCase();">
+                    <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtAisleFrom.$touched">
+                        <div class="error" ng-show="frmStorageLayoutSetup.txtAisleFrom.$error.required ||
+                                                    frmStorageLayoutSetup.txtAisleFrom.$error.pattern">
+                            Enter Aisle From (Max.3 letter(s)).
+                        </div>
+                    </div>
+                </div>
+                <label class="control-label col-sm-1" for="txtAisleTo">To</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" style="text-transform:uppercase"
+                           id="txtAisleTo" name="txtAisleTo"
+                           maxlength="3"
+                           ng-model="vm.storageLayout.AisleTo"
+                           ng-required="true"
+                           ng-pattern="/^[a-zA-Z0-9]*$/"
+                           ng-change="vm.storageLayout.AisleTo=vm.storageLayout.AisleTo.toUpperCase();">
+                    <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtAisleTo.$touched">
+                        <div class="error" ng-show="frmStorageLayoutSetup.txtAisleTo.$error.required ||
+                                                    frmStorageLayoutSetup.txtAisleTo.$error.pattern">
+                            Enter Aisle To (Max.3 letter(s)).
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group">
+                <label class="control-label col-sm-2 text-left" for="txtSectionFrom">Section</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" style="text-transform:uppercase"
+                           id="txtSectionFrom" name="txtSectionFrom"
+                           maxlength="3"
+                           ng-model="vm.storageLayout.SectionFrom"
+                           ng-required="true"
+                           ng-pattern="/^[a-zA-Z0-9]*$/"
+                           ng-change="vm.storageLayout.SectionFrom=vm.storageLayout.SectionFrom.toUpperCase();">
+                    <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtSectionFrom.$touched">
+                        <div class="error" ng-show="frmStorageLayoutSetup.txtSectionFrom.$error.required ||
+                                                    frmStorageLayoutSetup.txtSectionFrom.$error.pattern">
+                            Enter Section From (Max.3 letter(s)).
+                        </div>
+                    </div>
+                </div>
+                <label class="control-label col-sm-1" for="txtSectionTo">To</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" style="text-transform:uppercase"
+                           id="txtSectionTo" name="txtSectionTo"
+                           maxlength="3"
+                           ng-model="vm.storageLayout.SectionTo"
+                           ng-required="true"
+                           ng-pattern="/^[a-zA-Z0-9]*$/"
+                           ng-change="vm.storageLayout.SectionTo=vm.storageLayout.SectionTo.toUpperCase();">
+                    <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtSectionTo.$touched">
+                        <div class="error" ng-show="frmStorageLayoutSetup.txtSectionTo.$error.required ||
+                                                    frmStorageLayoutSetup.txtSectionTo.$error.pattern">
+                            Enter Section To (Max.3 letter(s)).
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group">
+                <label class="control-label col-sm-2 text-left" for="txtShelfFrom">Shelf</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" style="text-transform:uppercase"
+                           id="txtShelfFrom" name="txtShelfFrom"
+                           maxlength="3"
+                           ng-model="vm.storageLayout.ShelfFrom"
+                           ng-required="true"
+                           ng-pattern="/^[a-zA-Z0-9]*$/"
+                           ng-change="vm.storageLayout.ShelfFrom=vm.storageLayout.ShelfFrom.toUpperCase();">
+                    <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtShelfFrom.$touched">
+                        <div class="error" ng-show="frmStorageLayoutSetup.txtShelfFrom.$error.required ||
+                                                    frmStorageLayoutSetup.txtShelfFrom.$error.pattern">
+                            Enter Shelf From (Max.3 letter(s)).
+                        </div>
+                    </div>
+                </div>
+                <label class="control-label col-sm-1" for="txtShelfTo">To</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" style="text-transform:uppercase"
+                           id="txtShelfTo" name="txtShelfTo"
+                           maxlength="3"
+                           ng-model="vm.storageLayout.ShelfTo"
+                           ng-required="true"
+                           ng-pattern="/^[a-zA-Z0-9]*$/"
+                           ng-change="vm.storageLayout.ShelfTo=vm.storageLayout.ShelfTo.toUpperCase();">
+                    <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtShelfTo.$touched">
+                        <div class="error" ng-show="frmStorageLayoutSetup.txtShelfTo.$error.required ||
+                                                    frmStorageLayoutSetup.txtShelfTo.$error.pattern">
+                            Enter Shelf To (Max.3 letter(s)).
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group">
+                <label class="control-label col-sm-1 text-left" for="txtAisleFrom">Length</label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control"
+                           id="txtLength" name="txtLength"
+                           ng-model="vm.storageLayout.Length"
+                           ng-required="true">
+                    <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtLength.$touched">
+                        <div class="error" ng-show="frmStorageLayoutSetup.txtLength.$error.required ||
+                                                    frmStorageLayoutSetup.txtLength.$error.pattern">
+                            Enter Length (11,4 Digit(s)).
+                        </div>
+                    </div>
+                </div>
+                <label class="control-label col-sm-1 text-left" for="txtTotalWidth">Width</label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control"
+                           id="txtTotalWidth" name="txtWidth"
+                           ng-model="vm.storageLayout.Width"
+                           ng-required="true">
+                    <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtWidth.$touched">
+                        <div class="error" ng-show="frmStorageLayoutSetup.txtWidth.$error.required ||
+                                                    frmStorageLayoutSetup.txtWidth.$error.pattern">
+                            Enter Width (11,4 Digit(s)).
+                        </div>
+                    </div>
+                </div>
+                <label class="control-label col-sm-1 text-left" for="txtTotalHeight">Height</label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control"
+                           id="txtTotalHeight" name="txtHeight"
+                           ng-model="vm.storageLayout.Height"
+                           ng-required="true">
+                    <div class="errors" ng-show="frmStorageLayoutSetup.$submitted || frmStorageLayoutSetup.txtHeight.$touched">
+                        <div class="error" ng-show="frmStorageLayoutSetup.txtHeight.$error.required ||
+                                                    frmStorageLayoutSetup.txtHeight.$error.pattern">
+                            Enter Height (11,4 Digit(s)).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button"
+                data-dismiss="modal"
+                ng-click="btnCancel_Click();">
+            Cancel
+        </button>
+        <button class="btn btn-primary" type="submit" ng-click="btnOk_Click();">OK</button>
+    </div>
+</script>-->
+
+<form role="form" class="col-lg-12" name="frmWhSetup" style="padding-top:10px">
+    <fieldset>
+        <legend>Warehouse Setup</legend>
+        <div class="form-group">
+            <div class="panel with-nav-tabs panel-default">
+                <div class="panel-heading">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tabWhInfo" data-toggle="tab">Warehouse Info</a></li>
+                        <li><a href="#tabStLayout" data-toggle="tab">Storage Layout</a></li>
+                    </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane in active" id="tabWhInfo">
+                            <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                                <label for="txtWhCode">Warehouse Code</label>
+                                <input type="text" class="form-control" style="text-transform: uppercase"
+                                       id="txtWhCode" name="txtWhCode"
+                                       maxlength="6"
+                                       ng-maxlength="6"
+                                       ng-readonly="vm.isEdit"
+                                       ng-required="true"
+                                       ng-pattern="/^[a-zA-Z0-9]*$/"
+                                       ng-model="vm.wh.WarehouseCode"
+                                       ng-focus="!vm.isEdit"
+                                       ng-change="vm.wh.WarehouseCode=vm.wh.WarehouseCode.toUpperCase();">
+                                <div class="errors" ng-show="frmWhSetup.$submitted || frmWhSetup.txtWhCode.$touched">
+                                    <div class="error" ng-show="frmWhSetup.txtWhCode.$error.required ||
+                                                        frmWhSetup.txtWhCode.$error.pattern">
+                                        Please enter Warehouse Code (Max.6 letter(s)).
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                                <label for="txtWhName">Warehouse Name</label>
+                                <input type="text" class="form-control" id="txtWhName"
+                                       ng-model="vm.wh.WarehouseName"
+                                       ng-readonly="vm.isReadOnly"
+                                       ng-focus="vm.isEdit">
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                                <label for="txtStoreType">
+                                    <a ng-click="vm.showStoreTypeDialog()">Store Type Code</a>
+                                </label>
+                                <input class="form-control"
+                                       id="txtStoreType" name="txtStoreType"
+                                       ng-model="vm.wh.StoreTypeCode"
+                                       ng-readonly="vm.isReadOnly"
+                                       ng-dblclick="vm.showStoreTypeDialog()"
+                                       ng-change="vm.wh.StoreTypeCode=vm.wh.StoreTypeCode.toUpperCase();">
+                                <p class="help-block">Store Type Description: {{vm.storeTypeDesc}}</p>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                                <label for="txtLicWhFlag">Licensed Warehouse</label>
+                                <select class="form-control" id="txtLicWhFlag"
+                                        ng-model="vm.wh.LicensedFlag"
+                                        ng-disabled="vm.isReadOnly">
+                                    <option value="Y">Y</option>
+                                    <option value="N">N</option>
+                                </select>
+                                <p class="help-block">Y - Licensed Warehouse, N - Unlicensed Warehouse</p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group col-xs-12 col-sm-12 col-md-7 col-lg-8">
+                                <label for="txtAddress" class="control-label">Address</label>
+                                <textarea class="form-control" rows="4" id="txtAddress"
+                                          ng-model="vm.wh.Address"
+                                          ng-readonly="vm.isReadOnly"></textarea>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                                <label for="txtTel">Telephone</label>
+                                <input class="form-control" id="txtTel"
+                                       ng-model="vm.wh.Telephone"
+                                       ng-readonly="vm.isReadOnly">
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                                <label for="txtContactName">Contact Name</label>
+                                <input class="form-control" id="txtContactName"
+                                       ng-model="vm.wh.ContactName"
+                                       ng-readonly="vm.isReadOnly">
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                                <label for="txtCountryCode">
+                                    <a ng-click="vm.showCountryDialog()">Country Code</a>
+                                </label>
+                                <input class="form-control"
+                                       id="txtCountryCode" name="txtCountryCode"
+                                       ng-model="vm.wh.CountryCode"
+                                       ng-change="vm.wh.CountryCode=vm.wh.CountryCode.toUpperCase();"
+                                       ng-dblclick="vm.showCountryDialog()"
+                                       ng-readonly="vm.isReadOnly">
+                                <p class="help-block">Country Name: {{vm.countryName}}</p>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-4">
+                                <label for="txtCityCode">
+                                    <a ng-click="vm.showCityDialog()">City Code</a>
+                                </label>
+                                <input class="form-control"
+                                       id="txtCityCode" name="txtCityCode"
+                                       ng-model="vm.wh.CityCode"
+                                       ng-change="vm.wh.CityCode=vm.wh.CityCode.toUpperCase();"
+                                       ng-dblclick="vm.showCityDialog()"
+                                       ng-readonly="vm.isReadOnly">
+                                <p class="help-block">City Name: {{vm.cityName}}</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabStLayout">
+                            <div class="form-group col-xs-12 col-sm-12 col-md-7 col-lg-12 no-padding">
+                                <label for="dgvView">Storage Location</label>
+                                <div id="dgvView"
+                                     style="width:100%; height:400px;"
+                                     ui-grid="vm.gridOptions"
+                                     ui-grid-move-columns
+                                     ui-grid-resize-columns
+                                     ui-grid-selection
+                                     ui-grid-infinite-scroll
+                                     ng-readonly="vm.isReadOnly">
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-6 no-padding">
+                                <button type="button" class="btn btn-success"
+                                        id="btnGenStNo" name="btnGenStNo"
+                                        ng-click="vm.showStorageLayoutDialog()"
+                                        ng-disabled="vm.isReadOnly">
+                                    Generate Store No
+                                </button>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-2 text-right">
+                                <label class="control-label">Total</label>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-2 no-padding text-right">
+                                <input type="text" class="form-control"
+                                       id="txtTotalPalletSpace" name="txtTotalPalletSpace"
+                                       ng-model="vm.totalPalletSpace"
+                                       ng-readonly="true" />
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-6 col-md-5 col-lg-2 no-padding text-right">
+                                <input type="text" class="form-control"
+                                       id="txtTotalStorageSpace" name="txtTotalStorageSpace"
+                                       ng-model="vm.totalStoreSpace"
+                                       ng-readonly="true" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <button type="button" class="btn btn-danger"
+                    id="btnDelete" name="btnDelete"
+                    ng-click="vm.btnDelete_Click();"
+                    ng-confirm-click="Are you sure want to delete?">
+                {{vm.isDeleted ? "Undelete" : "Delete"}}
+            </button>
+            <div class="pull-right">
+                <button type="button" class="btn btn-default"
+                        id="btnCancel" name="btnCancel"
+                        ng-click="vm.btnCancel_Click();">Cancel</button>
+                <button type="submit" class="btn btn-primary"
+                        id="btnSave" name="btnSave"
+                        ng-disabled="vm.isReadOnly"
+                        ng-click="vm.btnSave_Click();">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>
